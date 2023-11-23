@@ -17,7 +17,7 @@ export default function Home() {
     <hr className="px-1.5"></hr>
       <Contador />
       </div>
-   
+  
     </main>
     </>
  
