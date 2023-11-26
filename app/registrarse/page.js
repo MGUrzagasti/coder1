@@ -1,4 +1,4 @@
-// components/Register.js
+
 "use client"
 
 import { useState } from 'react';
@@ -20,7 +20,7 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch('/api/register', {
+      const response = await fetch('', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const Register = () => {
 
   return (
     <div className="flex h-screen items-center justify-center">
-      <div className="bg-white p-8 shadow-md rounded-md w-96">
+      <div className="bg-teal-500 p-8 shadow-md rounded-md w-96">
         <h2 className="text-2xl font-semibold mb-6">Registro</h2>
         {error && (
           <div className="mb-4 text-red-500">

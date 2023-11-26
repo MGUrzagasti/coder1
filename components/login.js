@@ -1,7 +1,8 @@
 "use client"
-// components/Login.js
+
 import { useState } from 'react';
-import Register from './register';
+
+import Link from 'next/link';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -40,7 +41,7 @@ const Login = () => {
   const handleRegister = () => {
     // Lógica de registro (puedes implementarla según tus necesidades)
     console.log('Registrarse');
-    <Register />
+   
   };
 
   return (
@@ -85,9 +86,10 @@ const Login = () => {
             </button>
             <span className="text-sm">
               ¿No tienes una cuenta?{' '}
-              <button onClick={handleRegister} className="text-black">
-                Registrarse
-              </button>
+              <Link href="/registrarse">
+                <div className="text-blue-500">Registrarse</div>
+              </Link>
+            
             </span>
           </div>
         </form>
