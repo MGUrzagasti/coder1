@@ -4,8 +4,9 @@
 
 import React, { useEffect, useState } from "react";
 import { collection, getDoc, doc } from "firebase/firestore";
-import { useCart } from "@/app/context/CartContext";
+import CartStatus from "@/components/CartStatus";
 import { db } from "@/firebase/config";
+import { useCart } from "@/components/cartcontex";
 
 const getPostById = async (id) => {
   const postRef = doc(db, "productos", id);
@@ -25,10 +26,10 @@ const getPostById = async (id) => {
 };
 
 const PostDetail = ({ params }) => {
-  const { addToCart} = useCart();
+  const {addToCart,cart} =useCart();
   const [post, setPost] = useState(null);
   const { id } = params;
-
+ console.log(addToCart, cart)
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -42,14 +43,6 @@ const PostDetail = ({ params }) => {
     fetchPost();
   }, [id]);
 
-  const handleAddToCart = () => {
-    addToCart({
-    
-      title: post.titulo,
-      price: post.precio,
-      // Otros campos que desees agregar al carrito
-    });
-  };
 
 
 
@@ -58,7 +51,7 @@ const PostDetail = ({ params }) => {
   }
 
   return (
-    <div className="container mx-auto mt-6">
+    <div className="container mx-auto mt-6 flex">
       <h1 className="text-bold text 2xl">Detalle de producto</h1>
       <div className="max-w-md mx-auto bg-white rounded-md overflow-hidden shadow-md">
         <img
@@ -74,12 +67,16 @@ const PostDetail = ({ params }) => {
           <p className="text-indigo-500 font-bold text-xl">${post.precio}</p>
         </div>
         <button
-            onClick={addToCart}
+           onClick={()=> addToCart(post)}
             className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"
           >
             Agregar al carrito
           </button>
       </div>
+      <div>
+       {/* Nuevo componente para mostrar el estado del carrito */}
+       <CartStatus />
+       </div>
     </div>
   );
 };

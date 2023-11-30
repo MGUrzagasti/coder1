@@ -1,3 +1,7 @@
+
+
+
+
 import Contador from "@/components/contador";
 import Header from "@/components/header";
 
@@ -16,13 +20,15 @@ export default function Home() {
 
 
       <main className="container m-auto my-10">
+  
    
           <div className="text-2xl font-bold">
 
             <hr className="px-1.5"></hr>
+         
             <Contador />
           </div>
- 
+    
       </main>
     </>
 

@@ -10,6 +10,10 @@ import { collection, getDocs } from "firebase/firestore";
 
 import { db } from "@/firebase/config";
 import { storage } from "@/firebase/config";
+
+
+
+
 const getPosts = async () => {
   const postsCollection = collection(db, "productos");
 
@@ -53,6 +57,8 @@ const Posts = () => {
   };
 
   return (
+    <>
+  
     <div className="container mx-auto mt-6">
       <h1 className="text-3xl font-semibold mb-4">Posts</h1>
       <div className="mb-4">
@@ -90,6 +96,8 @@ const Posts = () => {
         ))}
       </ul>
     </div>
+  
+    </>
   );
 };
 
