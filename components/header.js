@@ -16,14 +16,15 @@ const Header = () => {
                     <Link href="/" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
                             Home
                         </Link>
-                        <Link href="/Posts" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+                        <Link href="/productos" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
                             Posts
                         </Link>
                         <Link href="/contacto" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
                             Quienes Somos
                         </Link>
-                        <Link href="/productos" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
-                            Productos
+                      
+                        <Link href="/cargaproducto" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
+                            cargar producto
                         </Link>
                     </div>
                     <div>
