@@ -4,8 +4,9 @@
 
 import React, { useEffect, useState } from "react";
 import { collection, getDoc, doc } from "firebase/firestore";
-
+import { useCart } from "@/app/context/CartContext";
 import { db } from "@/firebase/config";
+
 const getPostById = async (id) => {
   const postRef = doc(db, "productos", id);
 
@@ -24,6 +25,7 @@ const getPostById = async (id) => {
 };
 
 const PostDetail = ({ params }) => {
+  const { addToCart} = useCart();
   const [post, setPost] = useState(null);
   const { id } = params;
 
@@ -39,6 +41,17 @@ const PostDetail = ({ params }) => {
 
     fetchPost();
   }, [id]);
+
+  const handleAddToCart = () => {
+    addToCart({
+    
+      title: post.titulo,
+      price: post.precio,
+      // Otros campos que desees agregar al carrito
+    });
+  };
+
+
 
   if (!post) {
     return <div>Loading...</div>;
@@ -60,6 +73,12 @@ const PostDetail = ({ params }) => {
           <p className="text-gray-600 mb-2">Category: {post.categoria}</p>
           <p className="text-indigo-500 font-bold text-xl">${post.precio}</p>
         </div>
+        <button
+            onClick={addToCart}
+            className="bg-blue-500 text-white px-4 py-2 rounded-md mt-4"
+          >
+            Agregar al carrito
+          </button>
       </div>
     </div>
   );

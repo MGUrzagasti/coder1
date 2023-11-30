@@ -1,3 +1,6 @@
+
+
+
 // Posts.js
 
 "use client";
@@ -6,6 +9,7 @@ import Link from "next/link";
 import { collection, getDocs } from "firebase/firestore";
 
 import { db } from "@/firebase/config";
+import { storage } from "@/firebase/config";
 const getPosts = async () => {
   const postsCollection = collection(db, "productos");
 
