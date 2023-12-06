@@ -1,8 +1,8 @@
-import { Inter } from 'next/font/google'
-import './globals.css'
-import Header from '@/components/header'
-import Footer from '@/components/footer'
-import { CartProvider } from '@/components/cartcontex'
+import { Inter } from "next/font/google"
+import "./globals.css"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
+import { CartProvider } from "@/components/cartcontex"
 
 
 
@@ -21,6 +21,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
           <CartProvider>
           <Header />
+
           {children}
           <Footer />
           </CartProvider>

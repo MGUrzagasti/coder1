@@ -1,4 +1,5 @@
 "use client"
+//cartcontex.js
 import React, { createContext, useContext, useReducer } from "react";
 
 // Definir el contexto
@@ -12,6 +13,14 @@ const cartReducer = (state, action) => {
         ...state,
         cart: [...state.cart, action.payload],
       };
+      case "REMOVE_FROM_CART":
+        return {
+          ...state,
+          cart: state.cart.filter((item) => item.id !== action.payload.id),
+        };
+        
+
+
     // Agregar más casos según sea necesario (eliminar del carrito, actualizar cantidades, etc.)
     default:
       return state;
@@ -24,10 +33,14 @@ const CartProvider = ({ children }) => {
   const addToCart = (product) => {
     dispatch({ type: "ADD_TO_CART", payload: product });
   };
+  
+  const removeFromCart = (product) => {
+    dispatch({ type: "REMOVE_FROM_CART", payload: product });
+  };
   // Agregar más funciones según sea necesario (eliminar del carrito, actualizar cantidades, etc.)
 
   return (
-    <CartContext.Provider value={{ ...state, addToCart }}>
+    <CartContext.Provider value={{ ...state, addToCart, removeFromCart}}>
       {children}
     </CartContext.Provider>
   );

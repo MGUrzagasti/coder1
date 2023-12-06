@@ -1,5 +1,5 @@
 // pages/index.js
-import Login from '@/components/login';
+import Login from '@/components/Login';
 
 
 const Home = () => {

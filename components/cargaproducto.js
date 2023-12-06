@@ -1,7 +1,4 @@
-
-
-"use client";
-
+"use client"
 // Importa las funciones necesarias de Firebase
 import { useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
@@ -40,8 +37,15 @@ const FormularioCarga = () => {
       // Sube la imagen al almacenamiento de Firebase
       if (imageFile) {
         const storageRef = ref(storage, `${imageFile.name}`);
-        await uploadBytes(storageRef, imageFile);
+        const uploadTask = uploadBytes(storageRef, imageFile);
+
+        // Espera a que se complete la carga
+        await uploadTask;
+
+        // Obtiene la URL de descarga después de la carga
         const downloadURL = await getDownloadURL(storageRef);
+
+        // Actualiza el estado del producto con la URL de descarga
         setProducto((prevProducto) => ({
           ...prevProducto,
           imagen: downloadURL,
@@ -72,9 +76,9 @@ const FormularioCarga = () => {
 
   return (
     <>
-      <h1 className='text-2xl text-bold'>Carga de Producto</h1>
-      <form onSubmit={handleSubmit} className="max-w-sm mx-auto mt-8">
-        <label className="block mb-2 text-sm font-bold text-gray-600" htmlFor="titulo">
+      <h1 className='text-2xl font-bold'>Carga de Producto</h1>
+      <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8">
+        <label htmlFor="titulo" className="block mb-2 text-sm font-bold text-gray-600">
           Título:
         </label>
         <input
@@ -87,7 +91,7 @@ const FormularioCarga = () => {
           required
         />
 
-        <label className="block mb-2 text-sm font-bold text-gray-600" htmlFor="descripcion">
+        <label htmlFor="descripcion" className="block mb-2 text-sm font-bold text-gray-600">
           Descripción:
         </label>
         <textarea
@@ -99,7 +103,7 @@ const FormularioCarga = () => {
           required
         />
 
-        <label className="block mb-2 text-sm font-bold text-gray-600" htmlFor="precio">
+        <label htmlFor="precio" className="block mb-2 text-sm font-bold text-gray-600">
           Precio:
         </label>
         <input
@@ -112,7 +116,7 @@ const FormularioCarga = () => {
           required
         />
 
-        <label className="block mb-2 text-sm font-bold text-gray-600" htmlFor="stock">
+        <label htmlFor="stock" className="block mb-2 text-sm font-bold text-gray-600">
           Stock:
         </label>
         <input
@@ -125,9 +129,7 @@ const FormularioCarga = () => {
           required
         />
 
-       
-
-        <label className="block mb-2 text-sm font-bold text-gray-600" htmlFor="categoria">
+        <label htmlFor="categoria" className="block mb-2 text-sm font-bold text-gray-600">
           Categoría:
         </label>
         <input
@@ -140,8 +142,7 @@ const FormularioCarga = () => {
           required
         />
 
-        {/* Campo para cargar la imagen */}
-        <label className="block mb-2 text-sm font-bold text-gray-600" htmlFor="imagen">
+        <label htmlFor="imagen" className="block mb-2 text-sm font-bold text-gray-600">
           Imagen:
         </label>
         <input

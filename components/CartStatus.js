@@ -1,18 +1,20 @@
 // CartStatus.js
 import React from "react";
-
 import { useCart } from "./cartcontex";
 
 
-
 const CartStatus = () => {
-  const { cart } = useCart();
+  const { cart, removeFromCart } = useCart();
+
+  const handleRemoveFromCart = (product) => {
+    removeFromCart(product);
+  };
 
   return (
     <div>
-      <h2>Estado del Carrito:</h2>
+      <h2 className="text 2xl:">Estado del Carrito:</h2>
       {cart.length === 0 ? (
-        <p>El carrito está vacío.</p>
+        <p className="text-xl text">El carrito está vacío.</p>
       ) : (
         <ul>
           {cart.map((product, index) => (
@@ -24,6 +26,13 @@ const CartStatus = () => {
               />
               <span>{product.nombre}</span>
               <span>Precio: ${product.precio}</span>
+           
+             <button className="bg-red-500"  onClick={() => handleRemoveFromCart(product)}>
+                Eliminar del carrito
+              </button>
+
+          
+            
             </li>
           ))}
         </ul>
