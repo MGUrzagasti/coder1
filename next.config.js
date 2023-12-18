@@ -1,9 +1,9 @@
-/** @type {import('next').NextConfig} */
-//const nextConfig = {}
-
-//module.exports = nextConfig
+// next.config.js
 
 const nextConfig = {
+  experimental: {
+    webpackBuildWorker: true,
+  },
   webpack: (config, { isServer }) => {
     // Configuración de Webpack aquí, por ejemplo, manejo de alias
     if (!isServer) {
@@ -15,4 +15,3 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-
