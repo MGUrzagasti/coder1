@@ -1,13 +1,10 @@
+"use client"
 // Posts.js
-
-"use client";
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import { collection, getDocs } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { db } from "@/firebase/config";
-
-
+import { useAuthContext } from "./AuthContext";
 
 const getPosts = async () => {
   const postsCollection = collection(db, "productos");
@@ -23,12 +20,12 @@ const getPosts = async () => {
 };
 
 const Posts = () => {
-
-
+  const { user, logout } = useAuthContext();
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [showCargaProducto, setShowCargaProducto] = useState(true);
   const router = useRouter();
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -44,13 +41,14 @@ const Posts = () => {
   }, []);
 
   const handleCargaProductoClick = () => {
-    // Cambiar el estado para mostrar o ocultar el componente de carga de producto
     setShowCargaProducto(!showCargaProducto);
-
     router.push("/admin/cargaproducto");
   };
- 
 
+  const handleLogoutClick = async () => {
+    await logout();
+    router.push("/");
+  };
 
   return (
     <div className="container mx-auto mt-6">
@@ -64,7 +62,11 @@ const Posts = () => {
         </button>
       </div>
 
-
+      {user.logged && (
+        <button onClick={handleLogoutClick} className="px-4 py-2 bg-red-500 text-white rounded-md">
+          Cerrar Sesión
+        </button>
+      )}
 
       <table className="min-w-full divide-y divide-gray-200">
         <thead>
@@ -109,7 +111,6 @@ const Posts = () => {
                 />
               </td>
               <td className="px-6 py-4 whitespace-no-wrap">{post.descripcion}</td>
-
             </tr>
           ))}
         </tbody>
