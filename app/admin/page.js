@@ -1,16 +1,17 @@
 
 
-import Postst from '@/components/Postst'
 
+import Posts from '@/components/Postst'
 import React from 'react'
 
-const Admin = () => {
+const page = () => {
   return (
-    <div className=' container m-auto mt-0'>
-     <h2 className='text-2xl'>Panel de Administrador</h2>
-   <Postst />
+    <div>
+ <p>administrador</p>
+ <Posts/>
+ 
     </div>
   )
 }
 
-export default Admin
+export default page

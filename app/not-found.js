@@ -8,7 +8,7 @@ const notfound = () => {
   return (
   <div>
     <h1>pagina no encontrada</h1>
-    <Boton onClick={() => router.back()}>Volver </Boton>
+    <button onClick={() => router.back()}>Volver </button>
   </div>
   )
 };

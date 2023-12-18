@@ -1,5 +1,5 @@
 "use client"
-// Importa las funciones necesarias de Firebase
+
 import { useState } from 'react';
 import { addDoc, collection } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -9,8 +9,8 @@ const FormularioCarga = () => {
   const [producto, setProducto] = useState({
     titulo: '',
     descripcion: '',
-    precio: '',
-    stock: '',
+    precio: 0,
+    stock: 0,
     imagen: '',
     categoria: '',
   });
@@ -36,7 +36,7 @@ const FormularioCarga = () => {
     try {
       // Sube la imagen al almacenamiento de Firebase
       if (imageFile) {
-        const storageRef = ref(storage, `${imageFile.name}`);
+        const storageRef = ref(storage, `images/${imageFile.name}`);
         const uploadTask = uploadBytes(storageRef, imageFile);
 
         // Espera a que se complete la carga

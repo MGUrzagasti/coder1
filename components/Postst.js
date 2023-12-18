@@ -7,6 +7,8 @@ import { collection, getDocs } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 import { db } from "@/firebase/config";
 
+
+
 const getPosts = async () => {
   const postsCollection = collection(db, "productos");
 
@@ -21,9 +23,11 @@ const getPosts = async () => {
 };
 
 const Posts = () => {
+
+
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
-  const [showCargaProducto, setShowCargaProducto] = useState(false);
+  const [showCargaProducto, setShowCargaProducto] = useState(true);
   const router = useRouter();
   useEffect(() => {
     const fetchPosts = async () => {
@@ -43,9 +47,9 @@ const Posts = () => {
     // Cambiar el estado para mostrar o ocultar el componente de carga de producto
     setShowCargaProducto(!showCargaProducto);
 
-    router.push("./cargaproducto");
+    router.push("/admin/cargaproducto");
   };
-
+ 
 
 
   return (
@@ -80,6 +84,9 @@ const Posts = () => {
             <th className="px-6 py-3 bg-gray-50 text-left text-2xl leading-4 font-medium text-gray-500 uppercase tracking-wider">
               Imagen
             </th>
+            <th className="px-6 py-3 bg-gray-50 text-left text-2xl leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              Descripción
+            </th>
             <th className="px-6 py-3 bg-gray-50"></th>
           </tr>
         </thead>
@@ -101,11 +108,8 @@ const Posts = () => {
                   className="w-10 h-10 object-cover rounded-full"
                 />
               </td>
-              <td className="px-6 py-4 whitespace-no-wrap">
-                <Link href={`/productos/${post.id}`}>
-                  <div className="text-indigo-600 hover:text-indigo-900">Ver Detalles</div>
-                </Link>
-              </td>
+              <td className="px-6 py-4 whitespace-no-wrap">{post.descripcion}</td>
+
             </tr>
           ))}
         </tbody>
