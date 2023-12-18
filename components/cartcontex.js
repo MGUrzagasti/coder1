@@ -1,7 +1,7 @@
 
 
-"use client"// cartcontex.js
-// cartcontex.js
+"use client"
+
 import React, { createContext, useContext, useReducer } from "react";
 
 const CartContext = createContext();

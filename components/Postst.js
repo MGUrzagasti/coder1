@@ -1,5 +1,5 @@
 "use client"
-// Posts.js
+
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { useRouter } from "next/navigation";

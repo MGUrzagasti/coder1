@@ -68,12 +68,12 @@ const LoginPage = () => {
         </div>
 
         {user.logged ? (
-          // Si el usuario está autenticado, mostrar el botón de cerrar sesión
+       
           <button onClick={handleLogout} className="bg-red-500 text-white px-4 py-2 rounded-md">
             Cerrar Sesión
           </button>
         ) : (
-          // Si el usuario no está autenticado, mostrar los botones de registro e inicio de sesión
+       
           <>
             <button type="button" onClick={handleRegister} className="bg-teal-500 text-white px-4 py-2 rounded-md mr-4">
               Registrarse

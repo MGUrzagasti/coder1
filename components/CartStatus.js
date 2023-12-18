@@ -1,4 +1,4 @@
-// CartStatus.js
+
 import React from "react";
 import { useCart } from "./cartcontex";
 import { useRouter } from "next/navigation";

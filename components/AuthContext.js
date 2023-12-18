@@ -1,6 +1,6 @@
 "use client"
 
-// useAuthContext.js
+
 import { createContext, useContext, useState } from "react";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth, db } from "@/firebase/config";
@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     logged: false,
     email: null,
     uid: null,
-    role: "user", // Establece un rol predeterminado
+    role: "user", 
   });
 
   const createUser = async (values) => {

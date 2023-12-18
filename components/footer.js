@@ -1,4 +1,4 @@
-// components/Footer.js
+
 const Footer = () => {
     return (
       <footer className="bg-teal-500 text-black p-4">
